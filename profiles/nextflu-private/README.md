@@ -1,28 +1,10 @@
 # Monthly reports on seasonal influenza evolution
 
-## Build trees
+## Build and deploy trees
 
-[Run the nextflu-private build with the GitHub Action](https://github.com/nextstrain/seasonal-flu/actions/workflows/run-nextflu-private-builds.yaml).
-Use the build summary for the job to track the progress of the builds on AWS Batch and download the final builds.
-If trees look reasonable, rename them to match the current date (or the date corresponding to when the data were updated).
-
-``` bash
-export DATE=2022-10-03
-cd auspice/
-
-for file in {h1n1pdm,h3n2,vic}*
-do
-  mv ${file} "flu_seasonal_${DATE}_${file}"
-done
-```
-
-Upload the files to the Nextstrain group.
-
-``` bash
-nextstrain remote upload \
-  https://nextstrain.org/groups/nextflu-private/ \
-  *.json
-```
+[Run the nextflu-private builds with the GitHub Action](https://github.com/nextstrain/seasonal-flu/actions/workflows/run-nextflu-private-builds.yaml).
+The workflow automatically deploys dated Auspice JSONs to [the nextflu-private group](https://nextstrain.org/groups/nextflu-private/) (e.g., https://nextstrain.org/groups/nextflu-private/flu/seasonal/2024-01-08/h3n2/2y/ha).
+View the GitHub Action summary for details about how to download the build artifacts from AWS Batch.
 
 ## Prepare a report
 
@@ -58,8 +40,15 @@ Plots use Altair which is not part of the Nextstrain Docker or Conda base enviro
 snakemake \
   figures/total-sample-count-by-lineage.png \
   --use-conda \
-  --conda-frontend mamba \
+  --conda-frontend conda \
   -j 1 \
   -p \
   --configfile profiles/nextflu-private.yaml
 ```
+
+The private builds also produce Markdown table summarizing two different types of lineage or genotype counts:
+
+ - counts of samples collected in the last month per build and clade (e.g., `builds/h1n1pdm_2y_titers/counts_of_recent_tips_by_clade.md`)
+ - current frequency, change in frequency in the last 4 weeks, and titer reference strains for derived haplotypes (e.g., `builds/h1n1pdm_2y_titers/ha/haplotype_summary/cell_hi.md` per titer collection)
+
+Copy the contents of these files into the corresponding sections of the narrative Markdown.

@@ -19,7 +19,8 @@ output:
 build_dir = config.get("build_dir", "builds")
 
 GENES = {
-    'ha': ['SigPep', 'HA1', 'HA2'],
+#    'ha': ['SigPep', 'HA1', 'HA2'],
+    'ha': ['HA1', 'HA2'],
     'na': ['NA'],
 }
 

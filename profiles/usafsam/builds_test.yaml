@@ -20,7 +20,7 @@ lat-longs: "config/lat_longs.tsv"
 
 segments:
   - ha
-  - na
+#  - na
 
 # genes:
 #   ha:
@@ -42,9 +42,9 @@ array-builds:
   "usafsam_build":
     patterns:
       lineage:
-        - h1n1pdm
+#        - h1n1pdm
         - h3n2
-        - vic
+#        - vic
 #        - yam
     build_name: "{lineage}_usafsam"
     build_params:
@@ -61,4 +61,4 @@ array-builds:
       enable_lbi: true
     subsamples:
       global:
-        filters: ""
+        filters: "--exclude-where 'ha!=True'"

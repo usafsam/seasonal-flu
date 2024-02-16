@@ -20,7 +20,7 @@ lat-longs: "config/lat_longs.tsv"
 
 segments:
   - ha
-  - na
+#  - na
 
 # genes:
 #   ha:
@@ -43,8 +43,8 @@ array-builds:
     patterns:
       lineage:
         - h1n1pdm
-        - h3n2
-        - vic
+ #       - h3n2
+ #       - vic
 #        - yam
     build_name: "{lineage}_usafsam"
     build_params:

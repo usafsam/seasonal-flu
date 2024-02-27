@@ -46,7 +46,7 @@ array-builds:
         - h3n2
         - vic
 #        - yam
-    build_name: "{lineage}_usafsam"
+    build_name: "{lineage}"
     build_params:
       reference: "config/{lineage}/{{segment}}/reference.fasta"
       annotation: "config/{lineage}/{{segment}}/genemap.gff"

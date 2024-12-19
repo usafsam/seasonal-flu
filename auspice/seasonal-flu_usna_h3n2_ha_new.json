@@ -186,7 +186,12 @@
       {
         "key": "usna",
         "title": "USNA",
-        "type": "categorical"
+        "type": "categorical",
+	"scale": [
+	  [
+	   "usna",
+	   "#ec3b44"
+	  ]
       }
     ],
     "filters": [
